@@ -3,8 +3,6 @@ import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 
 
-
-
 const Failsafe: React.FC = () => {
   return (
     <Box sx={{
@@ -15,7 +13,6 @@ const Failsafe: React.FC = () => {
         color:'grey',
         height: '100vh',}}>
             <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', maxWidth: '90vw' }}>
-        <Box><img src={'/logo_extract.png'} alt="Molten Nile" /></Box>
         <Box sx={{ padding: '4rem', textAlign: 'center' }}>
         <Typography variant="h5">
           ...Oops, something happened
