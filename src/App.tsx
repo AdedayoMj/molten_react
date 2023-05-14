@@ -1,26 +1,51 @@
+import { ApolloClient, InMemoryCache, ApolloProvider } from '@apollo/client';
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { BrowserRouter } from 'react-router-dom';
+import { ThemeProvider, createTheme } from '@mui/material/styles';
+import { makeStyles } from 'tss-react/mui';
+import Box from '@mui/material/Box';
+//Pages
+import { RoutesPage } from './Routes';
 
-function App() {
+const theme = createTheme({
+  palette: {
+    primary: {
+      main: '#073642',
+    },
+  },
+});
+
+const subPath = '/graphql'
+
+//apollo client
+const client = new ApolloClient({
+  uri: `${process.env.REACT_APP_BACKEND_URL}${subPath.slice(1)}`,
+  cache: new InMemoryCache(),
+});
+
+const useStyles = makeStyles()((theme) => ({
+  root: {
+    backgroundColor: 'white',
+
+    boxSizing: 'border-box',
+    width: '100%',
+    minHeight: '100vh',
+    overflow: 'auto',
+  },
+}));
+
+export const App: React.FC = () => {
+  const { classes } = useStyles();
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <ThemeProvider theme={theme}>
+      <BrowserRouter>
+        <ApolloProvider client={client}>
+          <Box className={classes.root}>
+            <RoutesPage />
+          </Box>
+        </ApolloProvider>
+      </BrowserRouter>
+    </ThemeProvider>
   );
-}
-
-export default App;
+};
