@@ -126,7 +126,7 @@ const HomePage: React.FC = () => {
                 display={{ xs: 'none', md: 'block' }}
               >
                 <img
-                  src={`${process.env.REACT_APP_BACKEND_URL}${data.home.data.attributes.homeImage.data.attributes.url.slice(1)}`}
+                  src={`${process.env.REACT_APP_BACKEND_URL}${data.home.data.attributes.homeImage.data.attributes.url}`}
                   alt="homeimage"
                 />
               </Box>
@@ -166,7 +166,7 @@ const HomePage: React.FC = () => {
             <Grid item xs={12} sm={6} md={4} key={item.id}>
               <GradientCard
                 title={item.attributes.title}
-                image={`${process.env.REACT_APP_BACKEND_URL}${item.attributes.image.data.attributes.url.slice(1)}`}
+                image={`${process.env.REACT_APP_BACKEND_URL}${item.attributes.image.data.attributes.url}`}
                 id={item.id.toString()}
               />
             </Grid>

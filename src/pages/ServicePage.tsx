@@ -99,7 +99,7 @@ const ServicePage: React.FC = () => {
         <Box>
           <Sectionheader
             pageName="Services"
-            imageUrl={`${process.env.REACT_APP_BACKEND_URL}${data.imageCover.data.attributes.serviceCover.data.attributes.url.slice(1)}`}
+            imageUrl={`${process.env.REACT_APP_BACKEND_URL}${data.imageCover.data.attributes.serviceCover.data.attributes.url}`}
           />
           {data.services.data.map((item: any, index: number) => (
             <section
@@ -148,7 +148,7 @@ const ServicePage: React.FC = () => {
                       height={400}
                       width={'100%'}
                       style={{ objectFit: 'cover' }}
-                      src={`${process.env.REACT_APP_BACKEND_URL}${item.attributes.image.data.attributes.url.slice(1)}`}
+                      src={`${process.env.REACT_APP_BACKEND_URL}${item.attributes.image.data.attributes.url}`}
                       alt=""
                     />
                   </Box>

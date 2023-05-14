@@ -16,11 +16,29 @@ module.exports = {
       path: require.resolve("path-browserify"),
       os: require.resolve("os-browserify/browser")
     },
-    extensions: ['.ts', '.tsx', '.js', '.jsx'],
+    extensions: ['.ts', '.tsx', '.js', '.jsx', 'json'],
+    alias: {
+      '@assets': path.resolve(__dirname, 'assets'),
+    },
   },
 
   module: {
+   
     rules: [
+      {
+        test: /\.(png|jpe?g|gif)$/i,
+        use: [
+          {
+            loader: 'url-loader',
+            options: {
+              limit: 8192,
+              name: '[name].[hash].[ext]',
+              outputPath: 'assets',
+              esModule: false,
+            },
+          },
+        ],
+      },
       {
         test: /\.tsx?$/,
         exclude: /node_modules/,

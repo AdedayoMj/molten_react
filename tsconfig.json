@@ -20,5 +20,9 @@
     "noEmit": true,
     "jsx": "react-jsx"
   },
-  "include": ["src/**/*"]
+  "include": [
+    "src/**/*", 
+    "src/declaration.d.ts",
+    "assets/*"
+  ]
 }

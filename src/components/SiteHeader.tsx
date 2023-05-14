@@ -14,6 +14,27 @@ import Toolbar from '@mui/material/Toolbar';
 
 import Button from '@mui/material/Button';
 import { Link } from 'react-router-dom';
+import { useQuery, gql } from '@apollo/client';
+import { Typography } from '@mui/material';
+
+const LOGO = gql`
+  query getInfo {
+    logo{
+      data{
+        attributes{
+          companyLogo{
+            data{
+              attributes{
+                url
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+`;
+
 interface Props {
   /**
    * Injected by the documentation to work in an iframe.
@@ -33,6 +54,8 @@ const navItems = [
 const SiteHeader: React.FC = (props: Props) => {
   const { window } = props;
   const [mobileOpen, setMobileOpen] = React.useState(false);
+  const { loading, data } = useQuery(LOGO);
+
 
   const handleDrawerToggle = () => {
     setMobileOpen((prevState) => !prevState);
@@ -43,9 +66,12 @@ const SiteHeader: React.FC = (props: Props) => {
       onClick={handleDrawerToggle}
       sx={{ textAlign: 'center', color: '#073642' }}
     >
-      <Link to="/">
-        <img src={'/logo_extract.png'} alt="Molten Nile" height={100} />
+   
+        <Link to="/">
+        <img src={`/logo_extract.png`} alt="Molten Nile" height={100} />
       </Link>
+
+
       <Divider />
       <List>
         {navItems.map((item) => (
@@ -93,9 +119,11 @@ const SiteHeader: React.FC = (props: Props) => {
               display: { xs: 'none', sm: 'block' },
             }}
           >
+    
             <Link to="/">
-              <img src={'/logo_extract.png'} alt="Molten Nile" height={150} />
+              <img src={`/logo_extract.png`} alt="Molten Nile" height={150} />
             </Link>
+     
           </Box>
 
           <Box sx={{ display: { xs: 'none', sm: 'block' } }}>

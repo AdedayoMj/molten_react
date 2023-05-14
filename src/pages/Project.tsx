@@ -54,7 +54,7 @@ const ProjectPage: React.FC = () => {
         <Box>
           <Sectionheader
             pageName="Projects"
-            imageUrl={`${process.env.REACT_APP_BACKEND_URL}${data.imageCover.data.attributes.projectCover.data.attributes.url.slice(1)}`}
+            imageUrl={`${process.env.REACT_APP_BACKEND_URL}${data.imageCover.data.attributes.projectCover.data.attributes.url}`}
           />
           <Typography sx={{ letterSpacing: '0.05em' }}>
             {' '}
@@ -71,7 +71,7 @@ const ProjectPage: React.FC = () => {
               <Grid item xs={12} sm={6} md={4} key={item.id}>
                 <GradientCard
                   title={item.attributes.title}
-                  image={`${process.env.REACT_APP_BACKEND_URL}${item.attributes.project_image.data.attributes.url.slice(1)}`}
+                  image={`${process.env.REACT_APP_BACKEND_URL}${item.attributes.project_image.data.attributes.url}`}
                   id={item.id.toString()}
                   shouldShowButton={false}
                 />

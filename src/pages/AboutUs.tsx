@@ -83,7 +83,7 @@ console.log(data);
         <Box>
           <Sectionheader
             pageName="About Us"
-            imageUrl={`${process.env.REACT_APP_BACKEND_URL}${data.imageCover.data.attributes.aboutUsCover.data.attributes.url.slice(1)}`}
+            imageUrl={`${process.env.REACT_APP_BACKEND_URL}${data.imageCover.data.attributes.aboutUsCover.data.attributes.url}`}
           />
           <Box sx={{ mx: 'auto', maxWidth: '800px', px: 3, pt: 5 }}>
             {data.aboutUses.data.map((item: any) => (

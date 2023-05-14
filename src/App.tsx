@@ -15,11 +15,10 @@ const theme = createTheme({
   },
 });
 
-const subPath = '/graphql'
 
 //apollo client
 const client = new ApolloClient({
-  uri: `${process.env.REACT_APP_BACKEND_URL}${subPath.slice(1)}`,
+  uri: `${process.env.REACT_APP_BACKEND_URL}/graphql`,
   cache: new InMemoryCache(),
 });
 
