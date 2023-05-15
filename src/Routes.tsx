@@ -28,7 +28,9 @@ const useStyles = makeStyles()((theme) => ({
 
 export const RoutesPage: React.FC = () => {
   const { classes } = useStyles();
-  const { loading, error, data } = useQuery(FAILCHECK);
+  const { loading, error, data } =  useQuery(FAILCHECK, {
+    fetchPolicy: 'cache-first',
+  });
 
   return (
     <Box>
