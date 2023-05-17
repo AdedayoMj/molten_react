@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
@@ -17,7 +17,6 @@ interface GradientCardProps {
   title: string;
   image: string;
   id: string;
-  position?: string;
   shouldShowButton?: boolean;
 }
 
@@ -26,23 +25,58 @@ const GradientCard: React.FC<GradientCardProps> = ({
   image,
   id,
   shouldShowButton = true,
-  position,
 }) => {
+  const [imageLoadError, setImageLoadError] = useState(false);
+
+  const handleImageError = () => {
+    setImageLoadError(true);
+  };
+
   return (
     <Box sx={{ minWidth: 275, height: 350, marginBottom: '2rem' }}>
       <Box
         sx={{
           width: '100%',
           height: '100%',
-          backgroundImage: `url(${image})`,
-          backgroundSize: 'cover',
-          backgroundRepeat: 'no-repeat',
           position: 'relative',
           borderRadius: '10px',
           boxShadow: '0px 20px 10px rgba(0, 0, 0, 0.4)',
-          backgroundPosition: 'center',
         }}
       >
+        {!imageLoadError ? (
+          <img
+            src={image}
+            alt=""
+            style={{
+              width: '100%',
+              height: '100%',
+              objectFit: 'cover',
+              borderRadius: '10px',
+            }}
+            onError={handleImageError}
+          />
+        ) : (
+          <Box
+            sx={{
+              position: 'absolute',
+              top: 0,
+              left: 0,
+              width: '100%',
+              height: '100%',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              backgroundColor: '#f5f5f5',
+              borderRadius: '10px',
+              textAlign: 'center',
+            }}
+          >
+            <Typography variant="body1" color="textSecondary">
+              {title}
+            </Typography>
+          </Box>
+        )}
+
         <Box
           sx={{
             backgroundColor: 'rgba(0, 0, 0, 0.6)',

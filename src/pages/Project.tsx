@@ -54,7 +54,7 @@ const ProjectPage: React.FC = () => {
         <Box>
           <Sectionheader
             pageName="Projects"
-            imageUrl={`${process.env.REACT_APP_BACKEND_URL}${data.imageCover.data.attributes.projectCover.data.attributes.url}`}
+            imageUrl={`${process.env.REACT_APP_BACKEND_URL}${data.imageCover.data?.attributes.projectCover.data?.attributes.url}`}
           />
           <Typography sx={{ letterSpacing: '0.05em' }}>
             {' '}

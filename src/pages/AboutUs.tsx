@@ -65,7 +65,7 @@ const MarkdownParagraph = ({ children }: MarkdownHeadingProps) => {
 
 const AboutUs: React.FC = () => {
   const { loading, error, data } = useQuery(ABOUTUS);
-console.log(data);
+  console.log(data);
 
   return (
     <Box sx={{ minHeight: `calc(100vh - 33rem)` }}>
@@ -83,7 +83,7 @@ console.log(data);
         <Box>
           <Sectionheader
             pageName="About Us"
-            imageUrl={`${process.env.REACT_APP_BACKEND_URL}${data.imageCover.data.attributes.aboutUsCover.data.attributes.url}`}
+            imageUrl={`${process.env.REACT_APP_BACKEND_URL}${data.imageCover.data?.attributes.aboutUsCover.data?.attributes.url}`}
           />
           <Box sx={{ mx: 'auto', maxWidth: '800px', px: 3, pt: 5 }}>
             {data.aboutUses.data.map((item: any) => (

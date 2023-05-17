@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 import Box from '@mui/material/Box';
 
@@ -82,7 +82,10 @@ const MarkdownList = ({ children }: MarkdownHeadingProps) => {
 
 const ServicePage: React.FC = () => {
   const { loading, error, data } = useQuery(SERVICE);
-
+  const [imageLoadErrors, setImageLoadErrors] = useState<number[]>([]);
+  const handleImageError = (index: number) => {
+    setImageLoadErrors((prevErrors) => [...prevErrors, index]);
+  };
   return (
     <Box sx={{ minHeight: `calc(100vh - 34rem)` }}>
       {loading ? (
@@ -99,7 +102,7 @@ const ServicePage: React.FC = () => {
         <Box>
           <Sectionheader
             pageName="Services"
-            imageUrl={`${process.env.REACT_APP_BACKEND_URL}${data.imageCover.data.attributes.serviceCover.data.attributes.url}`}
+            imageUrl={`${process.env.REACT_APP_BACKEND_URL}${data.imageCover.data?.attributes.serviceCover.data?.attributes.url}`}
           />
           {data.services.data.map((item: any, index: number) => (
             <section
@@ -143,15 +146,19 @@ const ServicePage: React.FC = () => {
                   md={6}
                   order={{ md: index % 2 === 0 ? 2 : 1, xs: 1 }}
                 >
-                  <Box>
-                    <img
-                      height={400}
-                      width={'100%'}
-                      style={{ objectFit: 'cover' }}
-                      src={`${process.env.REACT_APP_BACKEND_URL}${item.attributes.image.data.attributes.url}`}
-                      alt=""
-                    />
-                  </Box>
+                  {!imageLoadErrors.includes(index) &&
+                    item.attributes.image.data?.attributes.url && (
+                      <Box>
+                        <img
+                          height={400}
+                          width={'100%'}
+                          style={{ objectFit: 'cover' }}
+                          src={`${process.env.REACT_APP_BACKEND_URL}${item.attributes.image.data?.attributes.url}`}
+                          alt=""
+                          onError={() => handleImageError(index)}
+                        />
+                      </Box>
+                    )}
                 </Grid>
               </Grid>
             </section>

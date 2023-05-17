@@ -40,7 +40,7 @@ const ErrorPage: React.FC = () => {
       ) : (
         <Box>
           <Sectionheader
-            imageUrl={`${process.env.REACT_APP_BACKEND_URL}${data.imageCover.data.attributes.errorCover.data.attributes.url}`}
+            imageUrl={`${process.env.REACT_APP_BACKEND_URL}${data.imageCover.data?.attributes.errorCover.data?.attributes.url}`}
           />
           <Box sx={{ display: 'flex', justifyContent: 'center' }}>
             <Typography

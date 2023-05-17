@@ -22,7 +22,7 @@ const SERVICE = gql`
         }
       }
     }
-  
+
     home {
       data {
         attributes {
@@ -77,7 +77,6 @@ const GradientButton = styled(Button)({
 const HomePage: React.FC = () => {
   const { loading, error, data } = useQuery(SERVICE);
 
-
   return (
     <Box sx={{ marginBottom: '3rem', minHeight: `calc(100vh - 34rem)` }}>
       {loading ? (
@@ -88,7 +87,6 @@ const HomePage: React.FC = () => {
         <Typography>Something went wrong</Typography>
       ) : (
         <Grid container spacing={2} sx={{ width: '100%', marginTop: '2em' }}>
-          
           <Grid
             item
             xs={12}
@@ -166,7 +164,7 @@ const HomePage: React.FC = () => {
             <Grid item xs={12} sm={6} md={4} key={item.id}>
               <GradientCard
                 title={item.attributes.title}
-                image={`${process.env.REACT_APP_BACKEND_URL}${item.attributes.image.data.attributes.url}`}
+                image={`${process.env.REACT_APP_BACKEND_URL}${item.attributes.image.data?.attributes?.url}`}
                 id={item.id.toString()}
               />
             </Grid>

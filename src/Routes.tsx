@@ -28,7 +28,7 @@ const useStyles = makeStyles()((theme) => ({
 
 export const RoutesPage: React.FC = () => {
   const { classes } = useStyles();
-  const { loading, error, data } =  useQuery(FAILCHECK, {
+  const { loading, error, data } = useQuery(FAILCHECK, {
     fetchPolicy: 'cache-first',
   });
 
@@ -45,25 +45,24 @@ export const RoutesPage: React.FC = () => {
         <Failsafe />
       ) : (
         <Box>
-        <Box className={classes.settings}>
-          <Box>
-            <SiteHeader />
+          <Box className={classes.settings}>
+            <Box>
+              <SiteHeader />
 
-            <Routes>
-              <Route path="/" element={<HomePage />} />
-              <Route path="/aboutus" element={<AboutUs />} />
-              <Route path="/services" element={<ServicePage />} />
-              <Route path="/contactus" element={<ContactUs />} />
-              <Route path="/projects" element={<ProjectPage />} />
-              <Route path="*" element={<ErrorPage />} />
-            </Routes>
+              <Routes>
+                <Route path="/" element={<HomePage />} />
+                <Route path="/aboutus" element={<AboutUs />} />
+                <Route path="/services" element={<ServicePage />} />
+                <Route path="/contactus" element={<ContactUs />} />
+                <Route path="/projects" element={<ProjectPage />} />
+                <Route path="*" element={<ErrorPage />} />
+              </Routes>
+            </Box>
           </Box>
-         
+          <Box className={classes.footer}>
+            <Footer />
+          </Box>
         </Box>
-         <Box className={classes.footer}>
-         <Footer />
-       </Box>
-       </Box>
       )}
     </Box>
   );

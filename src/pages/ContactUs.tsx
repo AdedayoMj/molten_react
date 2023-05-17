@@ -47,7 +47,7 @@ const ContactUs: React.FC = () => {
         <Box>
           <Sectionheader
             pageName="Contact Us"
-            imageUrl={`${process.env.REACT_APP_BACKEND_URL}${data.imageCover.data.attributes.contactUsCover.data.attributes.url}`}
+            imageUrl={`${process.env.REACT_APP_BACKEND_URL}${data.imageCover.data?.attributes.contactUsCover.data?.attributes.url}`}
           />
           <Box sx={{ textAlign: 'center' }}>
             <Typography sx={{ mb: 2 }}>
