@@ -32,8 +32,7 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "prettier": "prettier --write 'src/**/*.{ts,tsx,json,css,scss,md}'",
-    "serve": "serve -s build",
-    "install": "npm install --legacy-peer-deps"
+    "serve": "serve -s build"
   },
   "eslintConfig": {
     "extends": [
