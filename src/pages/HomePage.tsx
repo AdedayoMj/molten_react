@@ -124,7 +124,7 @@ const HomePage: React.FC = () => {
                 display={{ xs: 'none', md: 'block' }}
               >
                 <img
-                  src={`${process.env.REACT_APP_BACKEND_URL}${data.home.data.attributes.homeImage.data.attributes.url}`}
+                  src={`${process.env.REACT_APP_BACKEND_URL}${data.home.data.attributes.homeImage.data?.attributes.url}`}
                   alt="homeimage"
                 />
               </Box>
