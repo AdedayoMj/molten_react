@@ -4,10 +4,14 @@ import Box from '@mui/material/Box';
 import IconButton from '@mui/material/IconButton';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 
-const DividerScrollDown: React.FC = () => {
+interface Props {
+  showDivider?: boolean;
+}
+const DividerScrollDown: React.FC<Props> = ({ showDivider = true }) => {
   return (
     <Box sx={{ position: 'relative' }}>
-      <Divider />
+      {showDivider && <Divider />}
+
       <IconButton
         sx={{
           position: 'absolute',

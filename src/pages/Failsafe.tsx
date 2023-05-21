@@ -23,6 +23,7 @@ const Failsafe: React.FC = () => {
         }}
       >
         <Box sx={{ padding: '4rem', textAlign: 'center' }}>
+          <img src={`logo_extract.png`} alt="Molten Nile" height={150} />
           <Typography variant="h5">...Oops, something happened</Typography>
           <Typography>
             contact support at{' '}

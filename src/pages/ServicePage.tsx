@@ -86,25 +86,34 @@ const ServicePage: React.FC = () => {
   const handleImageError = (index: number) => {
     setImageLoadErrors((prevErrors) => [...prevErrors, index]);
   };
+
+  if (error) {
+    return <Typography>Section is currently under Maintenance</Typography>;
+  }
+
   return (
     <Box sx={{ minHeight: `calc(100vh - 34rem)` }}>
-      {loading ? (
-        ''
-      ) : error ? (
-        <Typography
-          sx={{ color: 'grey', lineHeight: 2.0, letterSpacing: '0.05em' }}
-        >
-          Section is currently under Maintainance
-        </Typography>
-      ) : !data || !data.services ? (
-        <Typography>Something went wrong</Typography>
-      ) : (
-        <Box>
-          <Sectionheader
-            pageName="Services"
-            imageUrl={`${process.env.REACT_APP_BACKEND_URL}${data.imageCover.data?.attributes.serviceCover.data?.attributes.url}`}
-          />
-          {data.services.data.map((item: any, index: number) => (
+      <Sectionheader
+        pageName="Services"
+        imageUrl={
+          data?.imageCover?.data?.attributes?.serviceCover?.data?.attributes
+            ?.url
+        }
+        loading={loading}
+      />{' '}
+      <Box>
+        {loading ? (
+          ''
+        ) : error ? (
+          <Typography
+            sx={{ color: 'grey', lineHeight: 2.0, letterSpacing: '0.05em' }}
+          >
+            Section is currently under Maintainance
+          </Typography>
+        ) : !data || !data.services ? (
+          <Typography>Something went wrong</Typography>
+        ) : (
+          data.services.data.map((item: any, index: number) => (
             <section
               id={item.id.toString()}
               key={item.id}
@@ -153,7 +162,7 @@ const ServicePage: React.FC = () => {
                           height={400}
                           width={'100%'}
                           style={{ objectFit: 'cover' }}
-                          src={`${process.env.REACT_APP_BACKEND_URL}${item.attributes.image.data?.attributes.url}`}
+                          src={item.attributes.image.data?.attributes.url}
                           alt=""
                           onError={() => handleImageError(index)}
                         />
@@ -162,9 +171,9 @@ const ServicePage: React.FC = () => {
                 </Grid>
               </Grid>
             </section>
-          ))}
-        </Box>
-      )}
+          ))
+        )}
+      </Box>
     </Box>
   );
 };

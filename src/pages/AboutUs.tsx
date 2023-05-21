@@ -69,22 +69,26 @@ const AboutUs: React.FC = () => {
 
   return (
     <Box sx={{ minHeight: `calc(100vh - 33rem)` }}>
-      {loading ? (
-        ''
-      ) : error ? (
-        <Typography
-          sx={{ color: 'grey', lineHeight: 2.0, letterSpacing: '0.05em' }}
-        >
-          Section is currently under Maintainance
-        </Typography>
-      ) : !data || !data.aboutUses ? (
-        <Typography>Something went wrong</Typography>
-      ) : (
-        <Box>
-          <Sectionheader
-            pageName="About Us"
-            imageUrl={`${process.env.REACT_APP_BACKEND_URL}${data.imageCover.data?.attributes.aboutUsCover.data?.attributes.url}`}
-          />
+      <Box>
+        <Sectionheader
+          pageName="About Us"
+          imageUrl={
+            data?.imageCover?.data?.attributes?.aboutUsCover?.data?.attributes
+              ?.url
+          }
+          loading={loading}
+        />
+        {loading ? (
+          ''
+        ) : error ? (
+          <Typography
+            sx={{ color: 'grey', lineHeight: 2.0, letterSpacing: '0.05em' }}
+          >
+            Section is currently under Maintainance
+          </Typography>
+        ) : !data || !data.aboutUses ? (
+          <Typography>Something went wrong</Typography>
+        ) : (
           <Box sx={{ mx: 'auto', maxWidth: '800px', px: 3, pt: 5 }}>
             {data.aboutUses.data.map((item: any) => (
               <Box key={item.id}>
@@ -104,8 +108,8 @@ const AboutUs: React.FC = () => {
               </Box>
             ))}
           </Box>
-        </Box>
-      )}
+        )}
+      </Box>
     </Box>
   );
 };

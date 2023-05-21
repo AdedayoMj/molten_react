@@ -37,18 +37,22 @@ const ContactUs: React.FC = () => {
   const { loading, error, data } = useQuery(CONTACT);
   return (
     <Box sx={{ minHeight: `calc(100vh - 33rem)` }}>
-      {loading ? (
-        ''
-      ) : error ? (
-        <Typography>Not available</Typography>
-      ) : !data || !data.companyAddress ? (
-        <Typography>Something went wrong</Typography>
-      ) : (
-        <Box>
-          <Sectionheader
-            pageName="Contact Us"
-            imageUrl={`${process.env.REACT_APP_BACKEND_URL}${data.imageCover.data?.attributes.contactUsCover.data?.attributes.url}`}
-          />
+      <Box>
+        <Sectionheader
+          pageName="Contact Us"
+          imageUrl={
+            data?.imageCover?.data?.attributes?.contactUsCover?.data?.attributes
+              .url
+          }
+          loading={loading}
+        />
+        {loading ? (
+          ''
+        ) : error ? (
+          <Typography>Not available</Typography>
+        ) : !data || !data.companyAddress ? (
+          <Typography>Something went wrong</Typography>
+        ) : (
           <Box sx={{ textAlign: 'center' }}>
             <Typography sx={{ mb: 2 }}>
               {data.companyAddress.data.attributes.Address}
@@ -64,12 +68,11 @@ const ContactUs: React.FC = () => {
               </a>
             </Typography>
           </Box>
-
-          <Box sx={{ display: 'flex', justifyContent: 'center' }}>
-            <Socials />
-          </Box>
+        )}
+        <Box sx={{ display: 'flex', justifyContent: 'center' }}>
+          <Socials />
         </Box>
-      )}
+      </Box>
     </Box>
   );
 };

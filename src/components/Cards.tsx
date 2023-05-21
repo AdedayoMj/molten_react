@@ -27,6 +27,7 @@ const GradientCard: React.FC<GradientCardProps> = ({
   shouldShowButton = true,
 }) => {
   const [imageLoadError, setImageLoadError] = useState(false);
+  console.log(title);
 
   const handleImageError = () => {
     setImageLoadError(true);
@@ -43,7 +44,7 @@ const GradientCard: React.FC<GradientCardProps> = ({
           boxShadow: '0px 20px 10px rgba(0, 0, 0, 0.4)',
         }}
       >
-        {!imageLoadError ? (
+        {!imageLoadError || !image ? (
           <img
             src={image}
             alt=""
