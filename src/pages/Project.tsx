@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import Box from '@mui/material/Box';
 import Sectionheader from '../components/SectionHeader';
 import { useQuery, gql } from '@apollo/client';
@@ -6,6 +6,7 @@ import Typography from '@mui/material/Typography';
 import Grid from '@mui/material/Grid';
 import ProductCardSkeleton from '../components/ProductCardSkeleton';
 import GradientCard from '../components/Cards';
+import ImageCarouselModal from '../components/ImageCarousel';
 
 const PROJECT = gql`
   query GetProjects {
@@ -39,14 +40,40 @@ const PROJECT = gql`
     }
   }
 `;
+
+export interface ProjectProps {
+  id: string;
+  attributes: {
+    title: string;
+    project_image: {
+      data: {
+        attributes: {
+          url: string;
+        };
+      }[];
+    };
+  };
+}
 const ProjectPage: React.FC = () => {
   const { loading, error, data } = useQuery(PROJECT);
+
+  const [selectedCard, setSelectedCard] = useState<ProjectProps | null>(null);
+const [isModalOpen, setIsModalOpen] = useState(false);
+
+
+  const handleCardClick = (card:ProjectProps) => {
+    setSelectedCard(card);
+    setIsModalOpen(true);
+    
+  };
+
 
   if (error) {
     return <Typography>Section is currently under Maintenance</Typography>;
   }
 
   return (
+    <Box>
     <Box sx={{ minHeight: `calc(100vh - 33rem)` }}>
       <Sectionheader
         pageName="Projects"
@@ -77,16 +104,26 @@ const ProjectPage: React.FC = () => {
         ) : (
           data.projects.data.map((item: any) => (
             <Grid item xs={12} sm={6} md={4} key={item.id}>
+              <Box onClick={() => handleCardClick(item)}>
               <GradientCard
                 title={item.attributes.title}
-                image={item.attributes.project_image?.data?.attributes?.url}
+                image={item.attributes.project_image?.data[0]?.attributes?.url}
                 id={item.id.toString()}
                 shouldShowButton={false}
               />
+              </Box>
+              
             </Grid>
           ))
         )}
       </Grid>
+      
+    </Box>
+    <ImageCarouselModal
+      isOpen={isModalOpen}
+      onClose={() => setIsModalOpen(false)}
+      selectedCard={selectedCard}
+    />
     </Box>
   );
 };
