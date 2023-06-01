@@ -6,7 +6,7 @@ export const FAILCHECK = gql`
         id
         attributes {
           title
-          project_image {
+          project_image(pagination: { limit: 50 }) {
             data {
               attributes {
                 url
